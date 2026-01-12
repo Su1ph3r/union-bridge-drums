@@ -68,5 +68,46 @@ function ruler() {
 
   };
 
+  /**
+   * Parse a string that may contain fractions into a decimal number
+   * Accepts: "14", "14.5", "14 1/2", "14-1/2", "1/2", "14.5in", etc.
+   */
+  this.parseFraction = function(input) {
+    if (typeof input === 'number') return input;
+    if (!input || typeof input !== 'string') return NaN;
+
+    // Remove units and trim
+    var str = input.replace(/\s*(in|cm|"|'')\s*$/i, '').trim();
+
+    // If it's just a number, return it
+    if (/^-?\d+\.?\d*$/.test(str)) {
+      return parseFloat(str);
+    }
+
+    // Check for fraction patterns
+    // Pattern: "14 1/2" or "14-1/2" (whole number + fraction)
+    var mixedMatch = str.match(/^(-?\d+)[\s\-]+(\d+)\/(\d+)$/);
+    if (mixedMatch) {
+      var whole = parseInt(mixedMatch[1], 10);
+      var num = parseInt(mixedMatch[2], 10);
+      var den = parseInt(mixedMatch[3], 10);
+      if (den === 0) return NaN;
+      var sign = whole < 0 ? -1 : 1;
+      return whole + sign * (num / den);
+    }
+
+    // Pattern: "1/2" (just a fraction)
+    var fractionMatch = str.match(/^(-?\d+)\/(\d+)$/);
+    if (fractionMatch) {
+      var numerator = parseInt(fractionMatch[1], 10);
+      var denominator = parseInt(fractionMatch[2], 10);
+      if (denominator === 0) return NaN;
+      return numerator / denominator;
+    }
+
+    // Try parsing as a regular number (fallback)
+    return parseFloat(str);
+  };
+
 }
 
