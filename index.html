@@ -44,6 +44,37 @@
 
               <legend>Stave Calculator</legend>
 
+              <div class="row-fluid" style="margin-bottom: 15px;">
+                <div class="span12">
+                  <label class="control-label" for="preset">Quick Presets</label>
+                  <select class="span12" name="preset" id="preset">
+                    <option value="">-- Select a drum size --</option>
+                    <optgroup label="Snare Drums">
+                      <option value="14,5.5">14" x 5.5" Standard Snare</option>
+                      <option value="14,6.5">14" x 6.5" Deep Snare</option>
+                      <option value="13,7">13" x 7" Piccolo Snare</option>
+                      <option value="14,8">14" x 8" Deep Snare</option>
+                      <option value="12,5">12" x 5" Soprano Snare</option>
+                    </optgroup>
+                    <optgroup label="Tom Drums">
+                      <option value="10,8">10" x 8" Rack Tom</option>
+                      <option value="12,9">12" x 9" Rack Tom</option>
+                      <option value="13,10">13" x 10" Rack Tom</option>
+                      <option value="14,14">14" x 14" Floor Tom</option>
+                      <option value="16,16">16" x 16" Floor Tom</option>
+                      <option value="18,16">18" x 16" Floor Tom</option>
+                    </optgroup>
+                    <optgroup label="Bass Drums">
+                      <option value="18,14">18" x 14" Jazz Bass</option>
+                      <option value="20,16">20" x 16" Standard Bass</option>
+                      <option value="22,18">22" x 18" Rock Bass</option>
+                      <option value="24,14">24" x 14" Wide Bass</option>
+                      <option value="26,14">26" x 14" Large Bass</option>
+                    </optgroup>
+                  </select>
+                </div>
+              </div>
+
               <div class="row-fluid">
 
                 <div class="span6">
@@ -247,6 +278,44 @@
 
             <button style="margin-top: 10px;" type="submit" class="btn btn-primary">Calculate</button>
 
+            <div class="row-fluid" style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #ddd;">
+              <div class="span12">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-small" id="saveProject" title="Save current settings">
+                    <i class="icon-download-alt"></i> Save
+                  </button>
+                  <button type="button" class="btn btn-small" id="loadProject" title="Load saved project">
+                    <i class="icon-upload-alt"></i> Load
+                  </button>
+                  <button type="button" class="btn btn-small" id="shareUrl" title="Copy shareable URL">
+                    <i class="icon-share"></i> Share URL
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div id="projectModal" class="modal hide fade" tabindex="-1">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 id="projectModalLabel">Project</h3>
+              </div>
+              <div class="modal-body">
+                <div id="saveForm">
+                  <label for="projectName">Project Name</label>
+                  <input type="text" id="projectName" class="span12" placeholder="My Drum Project">
+                </div>
+                <div id="loadList" style="display:none;">
+                  <p class="muted" id="noProjects">No saved projects found.</p>
+                  <ul class="nav nav-pills nav-stacked" id="projectList"></ul>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button class="btn" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-primary" id="confirmSave">Save Project</button>
+                <button class="btn btn-danger" id="deleteProject" style="display:none;">Delete</button>
+              </div>
+            </div>
+
           </form>
 
         </div>
@@ -399,6 +468,7 @@
     <script src="js/ruler.js"></script>
     <script src="js/form.js"></script>
     <script src="js/illustration.js"></script>
+    <script src="js/projects.js"></script>
 
     <script type="text/javascript">
       var _gaq = _gaq || [];
