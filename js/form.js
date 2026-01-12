@@ -60,11 +60,14 @@ $(document).ready(function() {
 
       var val;
 
+      // Parse input (supports fractions like "14 1/2")
+      var parsed = r.parseFraction($(this).val());
+
       // convert cm to inches for calculations
       if($(this).data('unit') == 'cm')
-        val = r.toInches(parseFloat($(this).val()));
+        val = r.toInches(parsed);
       else
-        val = parseFloat($(this).val());
+        val = parsed;
 
       s[$(this).attr('name')] = val;
 
@@ -126,11 +129,12 @@ $(document).ready(function() {
     $('input.unit').each(function(i, el) {
 
       var converted;
+      var parsed = r.parseFraction($(this).val());
 
       if($(this).data('unit') == 'in' && unit != 'in')
-        converted = r.toCentimeters( parseFloat( $(this).val() ) );
+        converted = r.toCentimeters(parsed);
       else if ($(this).data('unit') == 'cm' && unit != 'cm')
-        converted = r.toInches( parseFloat( $(this).val() ) );
+        converted = r.toInches(parsed);
 
       converted = converted.toFixed($(this).data('precision'));
 
@@ -152,7 +156,8 @@ $(document).ready(function() {
     if(unit == 'in') {
 
       var input = $(this).prev(),
-          converted = r.toCentimeters( parseFloat( input.val() ) );
+          parsed = r.parseFraction(input.val()),
+          converted = r.toCentimeters(parsed);
 
       input.data('unit', 'cm');
       input.val( converted.toFixed( input.data('precision') ) );
@@ -162,7 +167,8 @@ $(document).ready(function() {
     } else {
 
       var input = $(this).prev(),
-          converted = r.toInches( parseFloat( input.val() ) );
+          parsed = r.parseFraction(input.val()),
+          converted = r.toInches(parsed);
 
       input.data('unit', 'in');
       input.val( converted.toFixed( input.data('precision') ) );

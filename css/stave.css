@@ -63,3 +63,281 @@
 .btn-success {
   transition: all 0.3s ease;
 }
+
+/* Dark mode styles */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #333333;
+  --well-bg: #f5f5f5;
+  --border-color: #dddddd;
+  --input-bg: #ffffff;
+  --hero-bg: #f5f5f5;
+  --table-stripe: #f9f9f9;
+  --muted-text: #999999;
+}
+
+[data-theme="dark"] {
+  --bg-color: #1a1a2e;
+  --text-color: #e0e0e0;
+  --well-bg: #16213e;
+  --border-color: #0f3460;
+  --input-bg: #1a1a2e;
+  --hero-bg: #16213e;
+  --table-stripe: #1f2940;
+  --muted-text: #888888;
+}
+
+[data-theme="dark"] body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+[data-theme="dark"] .navbar-inner {
+  background: linear-gradient(to bottom, #2a2a4a 0%, #1a1a2e 100%);
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .brand {
+  color: #e0e0e0 !important;
+}
+
+[data-theme="dark"] .well {
+  background-color: var(--well-bg);
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .hero-unit {
+  background-color: var(--hero-bg);
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] input,
+[data-theme="dark"] select {
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .add-on {
+  background-color: var(--well-bg);
+  color: var(--text-color);
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .table {
+  background-color: var(--well-bg);
+}
+
+[data-theme="dark"] .table th,
+[data-theme="dark"] .table td {
+  border-color: var(--border-color);
+  color: var(--text-color);
+}
+
+[data-theme="dark"] .table-striped tbody > tr:nth-child(odd) > td {
+  background-color: var(--table-stripe);
+}
+
+[data-theme="dark"] .modal {
+  background-color: var(--well-bg);
+}
+
+[data-theme="dark"] .modal-header,
+[data-theme="dark"] .modal-footer {
+  background-color: var(--hero-bg);
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .modal-body {
+  background-color: var(--well-bg);
+}
+
+[data-theme="dark"] .close {
+  color: #ffffff;
+  opacity: 0.8;
+}
+
+[data-theme="dark"] a {
+  color: #6eb5ff;
+}
+
+[data-theme="dark"] legend {
+  color: var(--text-color);
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .muted {
+  color: var(--muted-text);
+}
+
+/* Dark mode toggle button */
+#darkModeToggle {
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+/* Additional calculators section */
+.calculator-section {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #ddd;
+}
+
+[data-theme="dark"] .calculator-section {
+  border-top-color: var(--border-color);
+}
+
+.calculator-section h4 {
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.calc-results {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+[data-theme="dark"] .calc-results {
+  background-color: var(--table-stripe);
+}
+
+.calc-results dt {
+  font-weight: bold;
+}
+
+.calc-results dd {
+  margin-bottom: 5px;
+  margin-left: 0;
+}
+
+/* Comparison mode */
+#comparisonPanel {
+  display: none;
+  margin-top: 20px;
+}
+
+#comparisonPanel.active {
+  display: block;
+}
+
+.comparison-table th.config-a {
+  background-color: #dff0d8;
+}
+
+.comparison-table th.config-b {
+  background-color: #d9edf7;
+}
+
+[data-theme="dark"] .comparison-table th.config-a {
+  background-color: #1e4620;
+}
+
+[data-theme="dark"] .comparison-table th.config-b {
+  background-color: #1a3a4a;
+}
+
+.comparison-diff {
+  font-weight: bold;
+  color: #c09853;
+}
+
+/* Print styles */
+@media print {
+  /* Hide non-essential elements */
+  .navbar,
+  #staveform,
+  #logo,
+  .btn,
+  .btn-group,
+  #projectModal,
+  #comparisonPanel,
+  .calculator-section {
+    display: none !important;
+  }
+
+  /* Reset layout */
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 12pt;
+    margin: 0;
+    padding: 20px;
+  }
+
+  .container-fluid,
+  .row-fluid,
+  .span4,
+  .span8 {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    float: none !important;
+  }
+
+  /* Show results and illustration */
+  #results {
+    display: block !important;
+    page-break-inside: avoid;
+  }
+
+  #illustration {
+    display: block !important;
+    max-width: 400px;
+    margin: 0 auto 20px;
+    page-break-inside: avoid;
+  }
+
+  .hero-unit {
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Style the results table for print */
+  .table {
+    width: 100% !important;
+    border-collapse: collapse;
+    page-break-inside: avoid;
+  }
+
+  .table th,
+  .table td {
+    border: 1px solid #333 !important;
+    padding: 8px !important;
+    background: white !important;
+    color: black !important;
+  }
+
+  .table th {
+    background: #f0f0f0 !important;
+    font-weight: bold;
+  }
+
+  .table-striped tbody > tr:nth-child(odd) > td {
+    background: #f9f9f9 !important;
+  }
+
+  /* Add print header */
+  #results::before {
+    content: "Union Bridge Drum Co. - Stave Calculator Results";
+    display: block;
+    font-size: 18pt;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  /* Add print footer with date */
+  #results::after {
+    content: "Printed: " attr(data-print-date);
+    display: block;
+    margin-top: 20px;
+    font-size: 10pt;
+    text-align: center;
+    color: #666;
+  }
+}
